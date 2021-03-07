@@ -33,7 +33,7 @@ jobs:
       - run: yarn run lint
       - run: |
           sudo systemctl start mysql.service
-          echo "DATABASE_URL=mysql://root:root@localhost:3306/test" > server/prisma/.env
+          echo "API_DATABASE_URL=mysql://root:root@localhost:3306/test" > server/prisma/.env
       - run: yarn run typecheck
       - run: |
           yarn run migrate:dev
