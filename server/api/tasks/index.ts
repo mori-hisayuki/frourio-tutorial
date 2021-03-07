@@ -1,10 +1,9 @@
-import type { Task } from '$prisma/client'
+import type { Task } from '$/types'
 
 export type Methods = {
   get: {
     query?: {
-      limit?: number
-      message?: string
+      limit: number
     }
 
     resBody: Task[]

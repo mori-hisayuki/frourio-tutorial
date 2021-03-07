@@ -8,7 +8,7 @@ import type { Task } from '$prisma/client'
 import type { FormEvent, ChangeEvent } from 'react'
 
 const Home = () => {
-  const { data: tasks, error, revalidate } = useAspidaSWR(apiClient.tasks)
+  const { data: tasks, error, revalidate } = useAspidaSWR(apiClient.tasks, { query: { limit: 10}})
   const [label, setLabel] = useState('')
   const inputLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabel(e.target.value),
