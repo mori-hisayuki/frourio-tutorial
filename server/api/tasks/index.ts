@@ -10,6 +10,7 @@ export type Methods = {
   }
   post: {
     reqBody: Pick<Task, 'label'>
+    status: 201
     resBody: Task
   }
 }

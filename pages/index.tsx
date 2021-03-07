@@ -8,7 +8,8 @@ import type { Task } from '$prisma/client'
 import type { FormEvent, ChangeEvent } from 'react'
 
 const Home = () => {
-  const { data: tasks, error, revalidate } = useAspidaSWR(apiClient.tasks, { query: { limit: 10}})
+  const taskId = 2
+  const {data, error, revalidate } = useAspidaSWR(apiClient.tasks, { query: { limit: 10}})
   const [label, setLabel] = useState('')
   const inputLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabel(e.target.value),
@@ -38,7 +39,7 @@ const Home = () => {
   }, [])
 
   if (error) return <div>failed to load</div>
-  if (!tasks) return <div>loading...</div>
+  if (!data) return <div>loading...</div>
 
   return (
     <div className={styles.container}>
@@ -62,7 +63,7 @@ const Home = () => {
             <input type="submit" value="ADD" />
           </form>
           <ul className={styles.tasks}>
-            {tasks.map((task) => (
+            {data.map((task) => (
               <li key={task.id}>
                 <label>
                   <input
