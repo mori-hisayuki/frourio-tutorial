@@ -5,7 +5,6 @@ export type Methods = {
     query?: {
       limit: number
     }
-
     resBody: Task[]
   }
   post: {

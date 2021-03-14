@@ -8,7 +8,7 @@ import type { Task } from '$prisma/client'
 import type { FormEvent, ChangeEvent } from 'react'
 
 const Home = () => {
-  const taskId = 2
+  const taskId = 1
   const {data, error, revalidate } = useAspidaSWR(apiClient.tasks, { query: { limit: 10}})
   const [label, setLabel] = useState('')
   const inputLabel = useCallback(
@@ -21,7 +21,7 @@ const Home = () => {
       e.preventDefault()
       if (!label) return
 
-      await apiClient.tasks.post({ body: { label } })
+      await apiClient.tasks.post({ body: { label: 'new label' } })
       setLabel('')
       revalidate()
     },

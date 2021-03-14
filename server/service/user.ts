@@ -32,7 +32,7 @@ export const validateUser = (id: string, pass: string) =>
 export const getUserInfoById = (id: string) => ({ id, ...getUserInfo(id) })
 
 export const changeIcon = async (id: string, iconFile: Multipart) => {
-  const iconName = getUserIconName(id)
+  const iconName = `${Date.now()}${path.extname(iconFile.filename)}`
 
   if (!iconsDir) {
     throw new Error('API_UPLOAD_DIR is not configured.')
@@ -41,7 +41,7 @@ export const changeIcon = async (id: string, iconFile: Multipart) => {
   await fs.promises.mkdir(iconsDir, { recursive: true })
 
   await fs.promises.writeFile(
-    path.resolve(iconsDir, iconName),
+    path.resolve('public/icons', id, iconName),
     await iconFile.toBuffer()
   )
 
